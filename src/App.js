@@ -18,19 +18,14 @@ const FadeIn = ({ duration = 300, delay = 0, index, children }) => {
   `;
   
   const Wrapper = styled.div`
-    @media (prefers-reduced-motion: no-preference) {
-      animation-name: ${fadeIn};
-      animation-fill-mode: backwards;
-    }
+    animation-name: ${fadeIn};
+    animation-fill-mode: backwards;
+    animation-duration: ${ () => duration + 'ms'};
+    animation-delay: ${ () => (delay * 100) + 'ms'};
   `;
   
   return (
-    <Wrapper
-      style={{
-        animationDuration: duration + 'ms',
-        animationDelay: (delay * 100) + 'ms',
-      }}
-    >
+    <Wrapper>
       {children}
     </Wrapper>
   );
