@@ -2,39 +2,39 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
 
-const FadeIn = ({ duration = 300, delay, index, children }) => {
+const FadeIn = ({ duration = 300, delay = 0, index, children }) => {
     
-    delay = index || 0
+  // use index if provided
+  delay = index || delay
 
-    const fadeIn = keyframes`
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    `;
-    
-    const Wrapper = styled.div`
-      @media (prefers-reduced-motion: no-preference) {
-        animation-name: ${fadeIn};
-        animation-fill-mode: backwards;
-      }
-    `;
-    
-    return (
-      <Wrapper
-        style={{
-          animationDuration: duration + 'ms',
-          animationDelay: (delay * 100) + 'ms',
-        }}
-      >
-        {children}
-      </Wrapper>
-    );
-  };
+  const fadeIn = keyframes`
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  `;
+  
+  const Wrapper = styled.div`
+    @media (prefers-reduced-motion: no-preference) {
+      animation-name: ${fadeIn};
+      animation-fill-mode: backwards;
+    }
+  `;
+  
+  return (
+    <Wrapper
+      style={{
+        animationDuration: duration + 'ms',
+        animationDelay: (delay * 100) + 'ms',
+      }}
+    >
+      {children}
+    </Wrapper>
+  );
+};
 
 function App() {
 
